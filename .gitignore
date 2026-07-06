@@ -1,0 +1,92 @@
+# ============================================
+#  RESERVO — .gitignore (monorepo)
+# ============================================
+
+# ---------- Java / Maven (backend) ----------
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+hs_err_pid*
+replay_pid*
+# El wrapper de Maven SÍ se versiona (mvnw, mvnw.cmd, .mvn/) — no lo ignores.
+# Pero la carpeta de su distribución descargada no:
+.mvn/wrapper/maven-wrapper.jar
+
+# ---------- Spring Boot ----------
+# Nada especial aparte de target/, pero por si generas dumps o config local:
+application-local.yml
+application-local.properties
+
+# ---------- Variables de entorno y secretos ----------
+# NUNCA subas credenciales, tokens ni claves JWT
+.env
+.env.*
+!.env.example          # sí versiona la plantilla de ejemplo
+*.pem
+*.key
+secrets/
+
+# ---------- Node / React / Vite / TypeScript (frontend) ----------
+node_modules/
+dist/
+dist-ssr/
+build/
+.vite/
+*.local
+coverage/
+.eslintcache
+.npm/
+.pnpm-store/
+.yarn/
+# Logs de gestores de paquetes
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---------- Testing ----------
+# Java
+.jacoco/
+# Playwright
+/frontend/test-results/
+/frontend/playwright-report/
+/frontend/playwright/.cache/
+
+# ---------- IntelliJ IDEA / JetBrains (IntelliJ Ultimate, DataGrip) ----------
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+# DataGrip / consola de BD guarda datos locales aquí:
+.idea/dataSources/
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/httpRequests/          # historial de la consola HTTP de IntelliJ
+
+# ---------- Bruno (cliente de API) ----------
+# La colección (.bru) SÍ se versiona a propósito (está en api-collection/).
+# Pero los entornos con secretos locales, no:
+api-collection/environments/*.local.bru
+
+# ---------- Docker ----------
+# Los Dockerfile y docker-compose.yml SÍ se versionan.
+# Solo ignora overrides y datos locales de volúmenes si los montas en el repo:
+docker-compose.override.yml
+.docker-data/
+
+# ---------- macOS ----------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ---------- Varios ----------
+*.tmp
+*.bak
+*.swp
